@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
@@ -22,6 +23,7 @@ public class ReqresTest extends TestBase {
     void checkApiEndpoint1() {
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .when()
                 .get(getSingleResourseAPI)
@@ -38,6 +40,7 @@ public class ReqresTest extends TestBase {
         String body = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"pistol\" }";
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .when()
                 .body(body)
@@ -56,6 +59,7 @@ public class ReqresTest extends TestBase {
         String body = "{ \"name\": \"morpheus\", \"job\": \"zion resident\" }";
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .when()
                 .body(body)
@@ -76,6 +80,7 @@ public class ReqresTest extends TestBase {
         String body = "{ \"name\": \"morpheus\", \"job\": \"zion resident\" }";
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .when()
                 .body(body)
@@ -95,6 +100,7 @@ public class ReqresTest extends TestBase {
     void checkApiEndpoint5() {
 
         given()
+                .filter(withCustomTemplates())
                 .log().uri()
                 .when()
                 .delete(deleteApi)

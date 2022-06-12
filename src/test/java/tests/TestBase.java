@@ -20,7 +20,6 @@ public class TestBase {
     @BeforeAll
     static void configure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-
         Configuration.baseUrl = "http://demowebshop.tricentis.com";
         RestAssured.baseURI = "http://demowebshop.tricentis.com";
     }
