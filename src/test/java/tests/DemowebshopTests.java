@@ -27,7 +27,6 @@ public class DemowebshopTests extends TestBase {
     //    static String login = "qaguru@qa.guru",
 //            password = "qaguru@qa.guru1",
 //            authCookieName = "NOPCOMMERCE.AUTH";
-
     static DataForWebShop dataUserWebshop = ConfigFactory.create(DataForWebShop.class);
     static String login = dataUserWebshop.login(),
             password = dataUserWebshop.password(),

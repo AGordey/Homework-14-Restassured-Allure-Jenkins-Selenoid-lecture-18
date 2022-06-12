@@ -11,11 +11,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import owner.BaseURLOwner;
+import owner.DataForWebShop;
 import owner.RemoteURLserver;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
-public class TestBase {
 
+public class TestBase {
 
 
     @BeforeAll
@@ -23,16 +24,18 @@ public class TestBase {
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
+
+
         //Задаю базовые ссылки для Webshop тестов
-        BaseURLOwner linkbaseConfig= ConfigFactory.create(BaseURLOwner.class);
+        BaseURLOwner linkbaseConfig = ConfigFactory.create(BaseURLOwner.class);
         Configuration.baseUrl = linkbaseConfig.baseURL();
         RestAssured.baseURI = linkbaseConfig.baseURI();
 
         //Задаю базовые URL удаленного сервера
         RemoteURLserver remoteURL = ConfigFactory.create(RemoteURLserver.class);
-        Configuration.remote = "https://" +remoteURL.loginremoteurl() + ":" + remoteURL.passwordremoteurl() + "@" +
-                System.getProperty("server_selenoid","selenoid.autotests.cloud/wd/hub");
-        Configuration.browserSize = System.getProperty("browser_size","1920x1080");
+        Configuration.remote = "https://" + remoteURL.loginremoteurl() + ":" + remoteURL.passwordremoteurl() + "@" +
+                System.getProperty("server_selenoid", "selenoid.autotests.cloud/wd/hub");
+        Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
 
         //Подключение видео для Allure
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -41,7 +44,8 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
 
     }
-// Что бы после каждого теста собирались артефакты выполнения теста
+
+    // Что бы после каждого теста собирались артефакты выполнения теста
     @AfterEach
     void afterEach() {
         Attach.screenshotAs("Скриншот выполненного теста");
